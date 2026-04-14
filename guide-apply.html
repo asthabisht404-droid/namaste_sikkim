@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Apply to Be a Guide</title>
+  <link rel="stylesheet" href="css/forms.css" />
+  <link rel="stylesheet" href="css/guide.css" />
+</head>
+<body>
+  <main class="apply-container">
+    <h1>🌄 Share Your Wisdom</h1>
+    <form id="guideApplicationForm">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="email" name="email" placeholder="Email Address" required />
+      <input type="text" name="region" placeholder="Region / Monastery Affiliation" required />
+      <textarea name="reason" placeholder="Why do you want to be a guide?" rows="4" required></textarea>
+      <button type="submit">Submit Application</button>
+    </form>
+    <p id="confirmationMessage" class="hidden">🙏 Thank you! Your application has been received.</p>
+  </main>
+  <script src="js/guide.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NamasteSikkim | Login</title>
+  <style>
+    /* === General Reset === */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif;}
+    body { background: #fff; display:flex; justify-content:center; align-items:center; min-height:100vh;}
+
+    /* Modal wrapper */
+    .modal { position: fixed; top:0; left:0; width:100%; height:100%; background: #fff; display:flex; justify-content:center; align-items:center; z-index:999; }
+
+    /* Login box */
+    .login-wrapper { width: 420px; background: #fff8e6; padding:2rem; border-radius:12px; position: relative; box-shadow:0 6px 15px rgba(0,0,0,0.3);}
+    .close-btn { position:absolute; top:10px; right:15px; background:none; border:none; font-size:24px; cursor:pointer;}
+    .back-link { position:absolute; top:10px; left:15px; font-size:14px; color:#ff9933; text-decoration:none; }
+
+    .logo { text-align:center; margin-bottom:1.5rem; }
+    .logo-icon { width:60px; height:60px; background:#ff9933; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:24px; font-weight:bold; color:#fff; margin:0 auto 10px; }
+    .logo h1 { font-size:22px; margin-bottom:4px; }
+    .tagline { font-size:14px; color:#666; }
+
+    .tab-buttons { display:flex; gap:10px; margin-bottom:1rem; }
+    .tab-buttons button { flex:1; padding:10px; border:none; background:#eee; cursor:pointer; border-radius:6px; font-size:14px; transition:0.3s; }
+    .tab-buttons button.active { background:#ff9933; color:#fff; }
+
+    .form-area form { display:none; flex-direction:column; }
+    .form-area form.active { display:flex; }
+    form h2 { margin-bottom:0.5rem; font-size:20px; color:#222; }
+    .form-desc { font-size:13px; color:#666; margin-bottom:1rem; }
+    label { font-size:13px; margin-bottom:4px; }
+    input, textarea { margin-bottom:1rem; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:14px; }
+    textarea { resize:none; }
+
+    .submit-btn { padding:10px; border:none; border-radius:6px; background:#ff9933; color:#fff; font-size:15px; cursor:pointer; transition:0.3s; }
+    .submit-btn:hover { background:#e68000; }
+
+    .extra-option { margin-top:10px; text-align:center; }
+    .extra-option button { background:none; border:none; color:#ff9933; cursor:pointer; font-size:13px; text-decoration:underline; }
+
+    .disclaimer { margin-top:1rem; font-size:12px; color:#999; text-align:center; }
+
+    #guideArea .login-wrapper { border-top: 4px solid #33ccff; }
+  </style>
+</head>
+<body>
+
+<div class="modal" id="loginModal">
+  <div class="login-wrapper">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <button class="close-btn" id="closeModal">&times;</button>
+
+    <div class="logo">
+      <div class="logo-icon">M</div>
+      <h1>NamasteSikkim</h1>
+      <p class="tagline">Join your spiritual journey</p>
+    </div>
+
+    <!-- Role Tabs -->
+    <div class="tab-buttons role-tabs">
+      <button id="touristTab" class="active">Tourist</button>
+      <button id="guideTab">Guide</button>
+    </div>
+
+    <!-- Tourist Area -->
+    <div id="touristArea" class="role-area active">
+      <div class="tab-buttons">
+        <button id="signInTab" class="active">Sign In</button>
+        <button id="createTab">Create Account</button>
+      </div>
+      <div class="form-area">
+        <form id="signInForm" class="active">
+          <h2>Welcome</h2>
+          <p class="form-desc">Sign in to access virtual tours and your progress.</p>
+          <label>Email</label>
+          <input type="email" placeholder="Enter your email" required>
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password" required>
+          <button type="submit" class="submit-btn">Sign In</button>
+        </form>
+
+        <form id="createForm">
+          <h2>Create Account</h2>
+          <p class="form-desc">Begin your journey with Monastery360.</p>
+          <label>Email</label>
+          <input type="email" placeholder="Enter your email" required>
+          <label>Password</label>
+          <input type="password" placeholder="Create a password" required>
+          <button type="submit" class="submit-btn">Create Account</button>
+          <div class="extra-option">
+            <button type="button" id="applyFromTourist">Apply as a Guide</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Guide Area -->
+    <div id="guideArea" class="role-area" style="display:none;">
+      <div class="tab-buttons">
+        <button id="guideSignInTab" class="active">Sign In</button>
+        <button id="applyGuideTab">Apply as Guide</button>
+      </div>
+      <div class="form-area">
+        <form id="guideSignInForm" class="active">
+          <h2>Guide Login</h2>
+          <p class="form-desc">Sign in to manage tours and connect with visitors.</p>
+          <label>Email</label>
+          <input type="email" placeholder="Enter your email" required>
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password" required>
+          <button type="submit" class="submit-btn">Sign In</button>
+        </form>
+
+        <form id="applyGuideForm">
+          <h2>Apply as a Guide</h2>
+          <p class="form-desc">Local residents of Sikkim can apply to become guides.</p>
+          <label>Full Name</label><input type="text" placeholder="Enter your name" required>
+          <label>Email</label><input type="email" placeholder="Enter your email" required>
+          <label>Phone Number</label><input type="tel" placeholder="Enter your phone number" required>
+          <label>Languages Spoken</label><input type="text" placeholder="English, Hindi, Nepali" required>
+          <label>Experience (Years)</label><input type="number" min="0" placeholder="e.g. 3" required>
+          <label>Short Bio</label><textarea placeholder="Tell us about yourself..." rows="3" required></textarea>
+          <button type="submit" class="submit-btn">Apply Now</button>
+        </form>
+      </div>
+    </div>
+
+    <p class="disclaimer">By continuing, you agree to our guidelines and privacy practices.</p>
+  </div>
+</div>
+
+<script>
+  const API_BASE = "http://localhost:8000/api/v1/users";
+
+  // Modal controls
+  const loginModal = document.getElementById("loginModal");
+  const closeModal = document.getElementById("closeModal");
+  closeModal.onclick = () => loginModal.style.display = "none";
+
+  // Role Tabs
+  const touristTab = document.getElementById("touristTab");
+  const guideTab = document.getElementById("guideTab");
+  const touristArea = document.getElementById("touristArea");
+  const guideArea = document.getElementById("guideArea");
+  touristTab.onclick = () => { touristTab.classList.add("active"); guideTab.classList.remove("active"); touristArea.style.display="block"; guideArea.style.display="none"; };
+  guideTab.onclick = () => { guideTab.classList.add("active"); touristTab.classList.remove("active"); guideArea.style.display="block"; touristArea.style.display="none"; };
+
+  // Tourist Tabs
+  const signInTab = document.getElementById("signInTab");
+  const createTab = document.getElementById("createTab");
+  const signInForm = document.getElementById("signInForm");
+  const createForm = document.getElementById("createForm");
+  signInTab.onclick = () => { signInTab.classList.add("active"); createTab.classList.remove("active"); signInForm.classList.add("active"); createForm.classList.remove("active"); };
+  createTab.onclick = () => { createTab.classList.add("active"); signInTab.classList.remove("active"); createForm.classList.add("active"); signInForm.classList.remove("active"); };
+
+  // Guide Tabs
+  const guideSignInTab = document.getElementById("guideSignInTab");
+  const applyGuideTab = document.getElementById("applyGuideTab");
+  const guideSignInForm = document.getElementById("guideSignInForm");
+  const applyGuideForm = document.getElementById("applyGuideForm");
+  guideSignInTab.onclick = () => { guideSignInTab.classList.add("active"); applyGuideTab.classList.remove("active"); guideSignInForm.classList.add("active"); applyGuideForm.classList.remove("active"); };
+  applyGuideTab.onclick = () => { applyGuideTab.classList.add("active"); guideSignInTab.classList.remove("active"); applyGuideForm.classList.add("active"); guideSignInForm.classList.remove("active"); };
+
+  // Apply from tourist
+  document.getElementById("applyFromTourist").onclick = () => { guideTab.click(); applyGuideTab.click(); };
+
+  // === API Calls ===
+  signInForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = signInForm.querySelector('input[type="email"]').value;
+    const password = signInForm.querySelector('input[type="password"]').value;
+    const res = await fetch(`${API_BASE}/login`, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({email,password,role:"tourist"}) });
+    const data = await res.json();
+    if(!res.ok) return alert("❌ " + (data.message || "Login failed"));
+    localStorage.setItem("token", data.token); alert("✅ Tourist logged in!"); loginModal.style.display="none";
+  });
+
+  createForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = createForm.querySelector('input[type="email"]').value;
+    const password = createForm.querySelector('input[type="password"]').value;
+    const res = await fetch(`${API_BASE}/register`, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({email,password,role:"tourist"}) });
+    const data = await res.json();
+    if(!res.ok) return alert("❌ " + (data.message || "Registration failed"));
+    alert("✅ Account created!"); signInTab.click();
+  });
+
+  guideSignInForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = guideSignInForm.querySelector('input[type="email"]').value;
+    const password = guideSignInForm.querySelector('input[type="password"]').value;
+    const res = await fetch(`${API_BASE}/login`, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({email,password,role:"guide"}) });
+    const data = await res.json();
+    if(!res.ok) return alert("❌ " + (data.message || "Login failed"));
+    localStorage.setItem("token", data.token); alert("✅ Guide logged in!"); loginModal.style.display="none";
+  });
+
+  applyGuideForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = {
+      fullName: applyGuideForm.querySelector('input[type="text"]').value,
+      email: applyGuideForm.querySelector('input[type="email"]').value,
+      phone: applyGuideForm.querySelector('input[type="tel"]').value,
+      languages: applyGuideForm.querySelector('input[type="text"]').value,
+      experience: applyGuideForm.querySelector('input[type="number"]').value,
+      bio: applyGuideForm.querySelector("textarea").value
+    };
+    const res = await fetch(`${API_BASE}/apply`, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(formData) });
+    const data = await res.json();
+    if(!res.ok) return alert("❌ " + (data.message || "Application failed"));
+    alert("✅ Guide application submitted!"); guideSignInTab.click();
+  });
+</script>
+
+</body>
+</html>

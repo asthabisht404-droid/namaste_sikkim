@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sikkim Buddhist Interviews & Narratives</title>
+<style>
+  /* === Base Reset === */
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+  body { background: #f4f4f9; color: #333; line-height: 1.6; }
+  
+  header {
+    background: #0077b6;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  header p { font-size: 1rem; color: #d0e7ff; }
+
+  .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+
+  /* === Card Styles === */
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  .card h2 { color: #0077b6; font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.95rem; margin-bottom: 0.5rem; text-align: justify; }
+  .tag { font-size: 0.8rem; color: #555; margin-top: 0.3rem; }
+
+  /* === Optional Toggle for Long Text === */
+  .toggle-content { display: none; padding-top: 0.5rem; }
+  .card.active .toggle-content { display: block; }
+  .toggle-button {
+    cursor: pointer;
+    color: #0077b6;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sikkim Buddhist Interviews & Narratives</h1>
+  <p>Insights from monks and monasteries of Sikkim</p>
+</header>
+
+<div class="container">
+
+  <!-- Yapu Yongda Interview -->
+  <div class="card">
+    <h2>Yapu Yongda – Monk from Pelling, Sikkim</h2>
+    <p>Yapu Yongda, aged 66, is a revered monk behind Pemayangtse Monastery, formerly a royal bodyguard, and founder of DPC School. He shared historical and spiritual insights about Buddhism’s role in Sikkim and political transitions post-1975, highlighting the non-violent choices of the last Chogyal and the spiritual landscape of Pelling, including Kanchenjunga.</p>
+    <div class="tag">breathedreamgo</div>
+  </div>
+
+  <!-- Ringu Tulku Rinpoche Interview -->
+  <div class="card">
+    <h2>Ringu Tulku Rinpoche – Tibetan Buddhist Master</h2>
+    <p>Ringu Tulku, educated mainly in Sikkim, served as a professor in Gangtok, trained Tibetan teachers, and traveled internationally teaching Buddhism. He emphasized compassion, patience, and harmony, and established Bodhicharya centers in Europe. His work bridges Eastern Buddhist traditions with Western students, promoting interfaith dialogue and cultural understanding.</p>
+    <div class="tag">bodhicharya+1</div>
+  </div>
+
+  <!-- Lama Lodu Rinpoche Oral History -->
+  <div class="card">
+    <h2>Lama Lodu Rinpoche – Monk from Rumtek Monastery</h2>
+    <p>Lama Lodu became a monk at age 5, studied and practiced at Rumtek Monastery, underwent a 3-year meditation retreat, and later traveled to the U.S. to teach Dharma. His oral history reflects the rigorous training, cultural blending, and resilience of monks preserving Buddhism during political upheavals and exile.</p>
+    <div class="tag">tibetoralhistory</div>
+  </div>
+
+  <!-- Pemayangtse Monastery Narrative -->
+  <div class="card">
+    <h2>Pemayangtse Monastery – History, Rituals, and Cultural Significance</h2>
+    <p>Founded in 1705 by Lama Lhatsun Chempo, Pemayangtse is a major Nyingma monastery in Pelling. Known for Lueden and Pang Lhabsol rituals, murals, and historical significance, it was tied to the Sikkim monarchy and spiritual practices. The monastery continues to preserve traditions, educate communities, and maintain cultural heritage.</p>
+    <div class="tag">sikkimproject</div>
+  </div>
+
+</div>
+
+<script>
+  // Optional toggle for long cards
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('active'));
+  });
+</script>
+
+</body>
+</html>

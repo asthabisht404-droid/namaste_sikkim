@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Rumtek Monastery",
+    "coords": [27.333, 88.620],
+    "info": "Rumtek is the seat of the Karmapa and one of the most significant monasteries in Sikkim, known for its vibrant rituals and architecture.",
+    "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=27.333,88.620"
+  },
+  {
+    "name": "Pemayangtse Monastery",
+    "coords": [27.250, 88.250],
+    "info": "Pemayangtse is one of the oldest monasteries in Sikkim, offering panoramic views and intricate woodwork reflecting Nyingma traditions.",
+    "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=27.250,88.250"
+  },
+  {
+    "name": "Tashiding Monastery",
+    "coords": [27.200, 88.300],
+    "info": "Tashiding is revered for its spiritual purity and hosts the sacred Bumchu Festival, attracting pilgrims from across the region.",
+    "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=27.200,88.300"
+  },
+  {
+    "name": "Enchey Monastery",
+    "coords": [27.336, 88.613],
+    "info": "Located near Gangtok, Enchey Monastery is known for its peaceful surroundings and Cham dance performances during festivals.",
+    "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=27.336,88.613"
+  },
+  {
+    "name": "Dubdi Monastery",
+    "coords": [27.300, 88.200],
+    "info": "Dubdi, the oldest monastery in Sikkim, sits atop a hill in Yuksom and offers serene views and historical significance.",
+    "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=27.300,88.200"
+  },
+  {
+    "name": "Ralang Monastery",
+    "coords": [27.250, 88.350],
+    "info": "Ralang Monastery is a major Kagyu institution in South Sikkim, known for its elaborate rituals and stunning murals.",
+    "streetViewUrl": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=27.250,88.350"
+  }
+]

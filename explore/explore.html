@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sikkim Monasteries</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url("l.avif");
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0 20px 0;
+      color: #333;
+    }
+
+    .monasteries-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 0 20px 40px 20px;
+    }
+
+    .monastery-card {
+      background: #fff;
+      width: 280px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .monastery-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .monastery-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .monastery-card h3 {
+      margin: 0 0 10px 0;
+      color: #0066cc;
+      font-size: 1.2rem;
+    }
+
+    .monastery-card p {
+      margin: 4px 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .monastery-card button {
+      padding: 8px 12px;
+      background: #0066cc;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .monastery-card button:hover {
+      background: #004d99;
+    }
+
+    @media (max-width: 900px) {
+      .monastery-card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Discover Sikkim: Monasteries and Popular Places</h1>
+  <div class="monasteries-grid" id="monasteries-grid"></div>
+
+  <script>
+    const monasteries = [
+  { name: "Rumtek Monastery", location: "East Sikkim", established: "1740", rating: 4.8, sect: "Kagyü Sect", img: "rum.jpg", url: "https://en.wikipedia.org/wiki/Rumtek_Monastery", virtualUrl: "https://maps.app.goo.gl/bcaEt2GgxXjBzf2R8" },
+  { name: "Pemayangtse Monastery", location: "West Sikkim", established: "1705", rating: 4.7, sect: "Nyingma Sect", img: "pema.jpg", url: "https://en.wikipedia.org/wiki/Pemayangtse_Monastery", virtualUrl: "https://maps.app.goo.gl/zjBmSfv6926A1w6G7" },
+  { name: "Tashiding Monastery", location: "West Sikkim", established: "1717", rating: 4.6, sect: "Nyingma Sect", img: "tashi.jpg", url: "https://en.wikipedia.org/wiki/Tashiding_Monastery", virtualUrl: "https://maps.app.goo.gl/GZe9PSvB1zGZnmCs5" },
+  { name: "Enchey Monastery", location: "Gangtok", established: "1909", rating: 4.5, sect: "Nyingma Sect", img: "enchey.jpg", url: "https://en.wikipedia.org/wiki/Enchey_Monastery", virtualUrl: "https://maps.app.goo.gl/yJ1sjuGVxupkrF9H9" },
+  { name: "Phodong Monastery", location: "North Sikkim", established: "1718", rating: 4.6, sect: "Kagyü Sect", img: "phodong.jpg", url: "https://en.wikipedia.org/wiki/Phodong_Monastery", virtualUrl: "https://maps.app.goo.gl/bYCR5UjBqnnbtaXu6" },
+  { name: "Ralong Monastery", location: "South Sikkim", established: "1690", rating: 4.4, sect: "Kagyü Sect", img: "ralang.webp", url: "https://en.wikipedia.org/wiki/Ralang_Monastery", virtualUrl: "https://maps.app.goo.gl/B3aCgVsLhtYzfKm97" },
+  { name: "Sanga Choeling Monastery", location: "West Sikkim", established: "1697", rating: 4.7, sect: "Nyingma Sect", img: "sana-choleing.jpg", url: "https://en.wikipedia.org/wiki/Sanga_Choeling_Monastery", virtualUrl: "https://maps.app.goo.gl/43ezBiZZLrJfLNYV7" },
+  { name: "Phensang Monastery", location: "North Sikkim", established: "1721", rating: 4.5, sect: "Nyingma Sect", img: "phensong.jpg", url: "https://en.wikipedia.org/wiki/Phensang_Monastery" },
+  { name: "Lachung Monastery", location: "North Sikkim", established: "1880", rating: 4.4, sect: "Nyingma Sect", img: "lachung.jpg", url: "https://en.wikipedia.org/wiki/Phensang_Monastery", virtualUrl: "https://maps.app.goo.gl/fvLJGddgsprjwTESA" },
+  { name: "Lingdum Monastery", location: "East Sikkim", established: "1998", rating: 4.7, sect: "Zurman Kagyu Sect", img: "ling.jpeg", url: "https://en.wikipedia.org/wiki/Lingdum_Monastery", virtualUrl: "https://maps.app.goo.gl/u9cX4xgvFjnHjeVP9" },
+  { name: "Dubdi Monastery", location: "West Sikkim", established: "1701", rating: 4.6, sect: "Nyingma Sect", img: "dubdi.webp", url: "https://en.wikipedia.org/wiki/Dubdi_Monastery" },
+  { name: "Kartok Monastery", location: "Yuksom, West Sikkim", established: "18th Century", rating: 4.3, sect: "Nyingma Sect", img: "Kartok.jpg", url: "https://en.wikipedia.org/wiki/Karthok_Monastery" },
+  { name: "Zong Dog Palri Fo Brang Monastery", location: "Kalimpong (Near Sikkim)", established: "1976", rating: 4.5, sect: "Buddhist", img: "zong.jpg", url: "https://en.wikipedia.org/wiki/Zangdopelri_Monastery" },
+  { name: "Ngadak Monastery", location: "Namchi, South Sikkim", established: "17th Century", rating: 4.2, sect: "Nyingma Sect", img: "ngadak.jpg", url: "https://www.tourmyindia.com/states/sikkim/ngadak-monsatery.html", virtualUrl: "https://maps.app.goo.gl/sJ1i2FE9vQHcUyso6" },
+  { name: "Tholung Monastery", location: "Dzongu, North Sikkim", established: "1789", rating: 4.4, sect: "Nyingma Sect", img: "tholung.jpg", url: "https://en.wikipedia.org/wiki/Tholung_Monastery" },
+{ name: "Melli Aatsing Monastery", location: "South Sikkim", established: "20th Century", rating: 4.3, sect: "Buddhist", img: "melli.jpg", url: "https://en.wikipedia.org/wiki/Melli_Atsing_Monastery" },
+{ name: "Tendong Gumpa", location: "South Sikkim", established: "Ancient", rating: 4.4, sect: "Buddhist", img: "tendong.jpg", url: "https://en.wikipedia.org/wiki/Tendong_Gumpa", virtualUrl: "https://maps.app.goo.gl/mgNne33enHA2xQX58" },
+{ name: "Tsuklakhang Palace", location: "Gangtok", established: "1898", rating: 4.7, sect: "Buddhist", img: "tsuklakhang.jpg", url: "https://en.wikipedia.org/wiki/Tsuklakhang_Palace"},
+{ name: "Bermiok Monastery", location: "West Sikkim", established: "20th Century", rating: 4.2, sect: "Buddhist", img: "bermiok.jpeg", url: "https://en.wikipedia.org/wiki/Bermiok_Monastery" },
+{ name: "Khecheopalri Lake", location: "West Sikkim", established: "Sacred Natural Site", rating: 4.8, sect: "Pilgrimage Site", img: "khecheopalri.jpeg", url: "https://en.wikipedia.org/wiki/Khecheopalri_Lake", virtualUrl: "https://maps.app.goo.gl/3v6aoYRMvaDoLzfE8" },
+
+  // Nearby famous attractions
+  { name: "Tsomgo Lake", location: "East Sikkim", established: "Natural Lake", rating: 4.8, sect: "Tourist Attraction", img: "tsomgo.webp", url: "https://en.wikipedia.org/wiki/Lake_Tsomgo", virtualUrl: "https://maps.app.goo.gl/faMyLCke9zRQVdjW8" },
+  { name: "Nathula Pass", location: "East Sikkim", established: "Historic Trade Route", rating: 4.7, sect: "Tourist Attraction", img: "nathula.jpg", url: "https://en.wikipedia.org/wiki/Nathu_La", virtualUrl: "https://maps.app.goo.gl/GtfgL8K2Dx7mfwVN6" },
+  { name: "Yumthang Valley", location: "North Sikkim", established: "Valley of Flowers", rating: 4.9, sect: "Tourist Attraction", img: "yumthang.jpg", url: "https://en.wikipedia.org/wiki/Yumthang_Valley_of_Flowers", virtualUrl: "https://maps.app.goo.gl/qUWNeqs2hjFuQdCW9" },
+  { name: "Gurudongmar Lake", location: "North Sikkim", established: "Sacred Lake", rating: 4.9, sect: "Tourist Attraction", img: "gurudongmar.jpeg", url: "https://en.wikipedia.org/wiki/Gurudongmar_Lake", virtualUrl: "https://maps.app.goo.gl/nmeGEycTx9gG1qWEA" },
+  { name: "Ravangla Buddha Park", location: "South Sikkim", established: "2006", rating: 4.8, sect: "Buddhist Park", img: "ravangla.jpg", url: "https://en.wikipedia.org/wiki/Buddha_Park_of_Ravangla", virtualUrl: "https://maps.app.goo.gl/XgjvVMCWqTBVWcMC8" }
+];
+
+
+    const grid = document.getElementById("monasteries-grid");
+
+    monasteries.forEach(m => {
+      const card = document.createElement("div");
+      card.className = "monastery-card";
+      card.innerHTML = `
+  <img src="${m.img}" alt="${m.name}">
+  <h3>${m.name}</h3>
+  <p><strong>Location:</strong> ${m.location}</p>
+  <p><strong>Established:</strong> ${m.established}</p>
+  <p><strong>Rating:</strong> ${m.rating} ★</p>
+  <p><strong>Sect:</strong> ${m.sect}</p>
+  <div class="buttons">
+    <a href="${m.url}" target="_blank"><button>More Info</button></a>
+    ${m.virtualUrl ? `<a href="${m.virtualUrl}" target="_blank"><button>Virtual View</button></a>` : ''}
+  </div>
+`;
+
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

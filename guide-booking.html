@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Guide | MonasteryNet</title>
+  <link rel="stylesheet" href="css/guide.css" />
+</head>
+<body>
+  <section class="booking-container">
+    <h1>Book a Local Guide</h1>
+    <form class="booking-form">
+      <label for="monastery">Select Monastery</label>
+      <select id="monastery" required>
+        <option value="">-- Choose --</option>
+        <option value="rumtek">Rumtek</option>
+        <option value="tashiding">Tashiding</option>
+        <option value="pemayangtse">Pemayangtse</option>
+      </select>
+
+      <label for="date">Preferred Date</label>
+      <input type="date" id="date" required />
+
+      <label for="guide">Choose Guide</label>
+      <select id="guide" required>
+        <option value="">-- Choose --</option>
+        <option value="karma-lama">Karma Lama</option>
+        <option value="sonam-dorje">Sonam Dorje</option>
+      </select>
+
+      <button type="submit">Request Booking</button>
+    </form>
+  </section>
+</body>
+</html>

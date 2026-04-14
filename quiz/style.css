@@ -1,0 +1,201 @@
+/* Rewritten: default background + transparent liquid-glass frame.
+   Palette: FBE6C2 (cream), F0C929 (sun), F48B29 (orange), AC0D0D (maroon)
+*/
+
+:root{
+  --cream: #FBE6C2;
+  --sun:   #F0C929;
+  --orange:var(--cream);
+  --maroon:white;
+  --text:  rgb(15, 14, 14);
+  --glass-edge: rgba(255,255,255,0.06);
+  --default-bg-url: url("images/monastry_pic.png");
+}
+
+/* Reset / base */
+*{box-sizing:border-box}
+html,body{height:100%;width:100%;margin:0;padding:0;font-family:"Segoe UI",system-ui,-apple-system,SegoeUIEmoji,sans-serif}
+img{max-width:100%;height:auto;display:block}
+
+/* Page background
+   - provide a default background image and fallback color
+   - JS will overwrite body.style.backgroundImage on click
+*/
+body{
+  background-color: var(--cream);                 /* fallback color */
+  background-image: var(--default-bg-url);        /* default image */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  transition: background-image 0.45s ease-in-out, background-color 0.25s;
+  color: var(--text);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow-x:hidden;
+}
+
+/* subtle vignette for improved contrast while keeping BG visible */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.18) 100%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Page container - very transparent so background shows through */
+.container{
+  width:95%;
+  max-width:1000px;
+  padding:20px;
+  border-radius:14px;
+  position:relative;
+  z-index:2;
+  background: linear-gradient(180deg, rgba(255,255,240,0.12), rgba(255,255,240,0.06)); /* very transparent */
+  border: 1px solid var(--glass-edge);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+  backdrop-filter: blur(6px) saturate(1.02);
+}
+
+/* Title */
+.title-glow{
+  text-align:center;
+  font-size:2.1rem;
+  margin:6px 0 14px;
+  color: var(--maroon);
+  text-shadow: 0 6px 18px rgba(172,13,13,0.06);
+}
+
+/* Monastery selection wrapper */
+#monastery-select{display:block}
+#monastery-list{display:flex;flex-direction:column;gap:12px;align-items:center;margin:6px 0 16px}
+
+/* Ripple buttons */
+.ripple-btn{
+  width:100%;
+  max-width:320px;
+  padding:12px 18px;
+  border-radius:10px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+  color: #3a100f;
+  background: linear-gradient(180deg, var(--sun), var(--orange));
+  box-shadow: 0 8px 22px rgba(0,0,0,0.10);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.ripple-btn:hover{ transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.16); filter:brightness(1.02) }
+
+/* Quiz box — more transparent liquid glass frame */
+.quiz-box{
+  position:relative;
+  margin:14px auto 0;
+  width:100%;
+  max-width:820px;
+  padding:22px;
+  border-radius:14px;
+  color:var(--text);
+  z-index:3;
+
+  /* very transparent frosted glass so background remains visible */
+  background: linear-gradient(180deg, rgba(255,255,240,0.06), rgba(255,255,240,0.03));
+  border: 1px solid rgba(226, 18, 18, 0.05);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(10px) saturate(1.02);
+}
+
+/* decorative glass rim */
+.quiz-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:14px;
+  padding:1px;
+  pointer-events:none;
+  background: linear-gradient(90deg, rgba(255,255,240,0.06), rgba(240,201,41,0.04), rgba(172,13,13,0.03));
+  -webkit-mask:
+    linear-gradient(#000,#000) content-box,
+    linear-gradient(#000,#000);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* soft highlight bar */
+.quiz-box::after{
+  content:"";
+  position:absolute;
+  top:6px; left:8px; right:8px;
+  height:6px;
+  border-radius:8px;
+  background: linear-gradient(90deg, rgba(255,255,240,0.10), rgba(251,230,194,0.03));
+  pointer-events:none;
+}
+
+/* Status row */
+.status{ display:flex; justify-content:space-between; align-items:center; font-weight:700; margin-bottom:14px; color:var(--maroon) }
+#progress{font-weight:700}
+#coins{font-weight:700}
+
+/* Question area */
+.question-box{ /* keep structure expected by JS */
+  display:block;
+}
+.question-area h2{ margin:6px 0 14px; font-size:1.2rem; color: var(--text) }
+
+/* Options */
+#options{ list-style:none; padding:0; margin:0 }
+#options li{
+  background: rgba(255,255,255,0.86);
+  margin:10px 0;
+  padding:12px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  color: var(--text);
+  font-weight:700;
+  border:1px solid rgba(172,13,13,0.06);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+  transition: transform .12s, background-color .12s, box-shadow .12s;
+}
+#options li:hover{
+  transform: translateY(-3px);
+  background: linear-gradient(180deg, var(--orange), var(--sun));
+  color:#241303;
+  box-shadow:0 14px 30px rgba(0,0,0,0.12);
+}
+
+/* Feedback */
+#feedback{ margin-top:14px; font-size:1.02rem; color: var(--maroon) }
+
+/* Actions */
+.actions{ display:flex; justify-content:space-between; margin-top:18px; gap:10px }
+.actions button{
+  flex:1;
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+  color: #FFB823;
+  background: linear-gradient(180deg, var(--maroon), var(--orange));
+  box-shadow:0 10px 26px rgba(0,0,0,0.16);
+  transition: transform .12s, filter .12s;
+}
+.actions button:hover{ transform: translateY(-2px); filter:brightness(1.03) }
+
+/* General buttons fallback */
+button{ padding:10px 20px; border-radius:10px; font-weight:700; cursor:pointer; color:var(--cream); background:var(--maroon); border:2px solid rgba(255,255,255,0.06); transition:transform .12s }
+button:hover{ transform:translateY(-2px); background: linear-gradient(180deg, var(--orange), var(--sun)) }
+
+/* Responsive */
+@media (max-width:720px){
+  .container{ padding:14px }
+  .quiz-box{ padding:16px }
+  .title-glow{ font-size:1.4rem }
+  .ripple-btn{ max-width:100% }
+}

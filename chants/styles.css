@@ -1,0 +1,76 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: #fdfaf5;
+  color: #333;
+}
+
+.chants-section {
+  padding: 3rem 2rem;
+  background-color: #f7f3ec;
+  border-top: 2px solid #c49a6c;
+  text-align: center;
+}
+
+.chants-section h1 {
+  font-size: 2.5rem;
+  color: #5a3b2e;
+  margin-bottom: 1rem;
+}
+
+.intro {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #6b4c3b;
+}
+
+.chant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.chant-card {
+  background: #fff;
+  border-left: 6px solid #c49a6c;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.chant-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.chant-card h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #7c4d3b;
+}
+
+.chant-card p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.chant-button {
+  display: inline-block;
+  background-color: #7c4d3b;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.chant-button:hover {
+  background-color: #5a3b2e;
+}

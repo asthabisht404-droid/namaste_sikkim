@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famous Lamas of Sikkim</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      /* Background image */
+      background: url('sik.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      margin-bottom: 30px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* Liquid glass card style */
+    .lama-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      width: 220px;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px) saturate(180%);
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.18);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .lama-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    .lama-card img {
+      width: 100%;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .lama-card h3 {
+      margin: 10px 0;
+      color: #f0f0f0;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+      font-size: 1rem;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 700px;
+      width: 90%;
+      max-height: 90%;
+      overflow-y: auto;
+      position: relative;
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 25px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 10px;
+      color: #ffd700;
+    }
+
+    .modal-content p, .modal-content ul {
+      margin-bottom: 10px;
+      color: #f0f0f0;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #ffd700;
+    }
+
+    /* Scrollbar for modal */
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+    .modal-content::-webkit-scrollbar-thumb {
+      background-color: rgba(255,255,255,0.3);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Famous Lamas of Sikkim</h1>
+
+<div class="card-container" id="cardContainer"></div>
+
+<!-- Modal -->
+<div id="lamaModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+  const lamas = [
+    {
+      name: "Lama Lhatsun Chempo (Lhatsun Namkha Jigme)",
+      img: "1. Lama Lhatsun Chempo (Lhatsun Namkha Jigme).jpg",
+      info: `<p><span class="label">Born:</span> 1597, Kongpo region, Central Tibet</p>
+             <p><span class="label">Died:</span> 1653</p>
+             <p><span class="label">Tradition:</span> Nyingma, Dzogchen</p>
+             <p><span class="label">Key Contributions:</span></p>
+             <ul>
+               <li>Principal officiant at coronation of Phuntsog Namgyal, first Chogyal of Sikkim (1642)</li>
+               <li>Founded Dubdi Monastery (1647), Pemayangtse Monastery, and Sanga Choeling Monastery</li>
+               <li>Revealed terma: Rigdzin Sokdrup</li>
+               <li>Attained rainbow body at death</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Spiritual architect of Sikkim; festivals and rituals continue; revered as mystical figure shaping Sikkim’s religious identity</p>`
+    },
+    {
+      name: "Ngadak Sempa Chempo",
+      img: "Ngadak Sempa Chempo- Spiritual Architect and Unifier of Sikkim.webp",
+      info: `<p><span class="label">Origin:</span> Southern Tibet</p>
+             <p><span class="label">Tradition:</span> Nyingma</p>
+             <p><span class="label">Role in Sikkim:</span> One of the “Three Lamas” who established the Chogyal monarchy</p>
+             <p><span class="label">Contributions:</span></p>
+             <ul>
+               <li>Mediator at coronation of Phuntsog Namgyal (1642)</li>
+               <li>Founded Tashiding Monastery; instituted annual Bhumchu festival</li>
+               <li>Promoted cultural integration among Lepchas, Bhutias, Limboos</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Spiritual unifier and guardian; teachings and rituals continue</p>`
+    },
+    {
+      name: "Kathok Kuntu Zangpo",
+      img: "Kathok Kuntu Zangpo.jpg",
+      info: `<p><span class="label">Origin:</span> Kathok, Western Tibet</p>
+             <p><span class="label">Tradition:</span> Nyingma</p>
+             <p><span class="label">Role in Sikkim:</span> One of the “Three Lamas”</p>
+             <p><span class="label">Contributions:</span></p>
+             <ul>
+               <li>Assisted in coronation of Phuntsog Namgyal (1642)</li>
+               <li>Founded Kathok Monastery (1643); preserved sacred relics and scriptures</li>
+               <li>Introduced ritual, administrative, and monastic frameworks in Sikkim</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Institutional founder, ritual innovator; lineage continues through descendants</p>`
+    },
+    {
+      name: "9th Karmapa Wangchuk Dorje",
+      img: "The 9th Karmapa Wangchuk Dorje.jpg",
+      info: `<p><span class="label">Born:</span> 1556, Kham, Eastern Tibet</p>
+             <p><span class="label">Tradition:</span> Karma Kagyu</p>
+             <p><span class="label">Key Contributions:</span></p>
+             <ul>
+               <li>Expanded Karma Kagyu teachings and monasteries into Sikkim</li>
+               <li>Founder of original Rumtek Monastery</li>
+               <li>Authored Mahamudra texts: Ocean of Definitive Meaning, Pointing Out the Dharmakaya</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Established Karma Kagyu institutional presence in Sikkim; spiritual unifier</p>`
+    },
+    {
+      name: "16th Karmapa Rangjung Rigpe Dorje",
+      img: "images.jpeg",
+      info: `<p><span class="label">Born:</span> 1924, Denkhok, Derge, Eastern Tibet</p>
+             <p><span class="label">Died:</span> 1981, Illinois, USA</p>
+             <p><span class="label">Tradition:</span> Karma Kagyu</p>
+             <p><span class="label">Key Contributions:</span></p>
+             <ul>
+               <li>Rebuilt Rumtek Monastery as Dharma Chakra Centre (1960s)</li>
+               <li>Introduced Black Hat Ceremony, Cham dances, international centers</li>
+               <li>Preserved and propagated Karma Kagyu teachings globally</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Central figure in Tibetan Buddhism in exile; Rumtek remains main seat</p>`
+    },
+    {
+      name: "Lama Druptob Karpo",
+      img: "Lama Druptob Karpo.jpg",
+      info: `<p><span class="label">Birthplace:</span> Likely Sikkim; associated with Maenam Hill</p>
+             <p><span class="label">Tradition:</span> Nyingma, Drupthob</p>
+             <p><span class="label">Key Contributions:</span></p>
+             <ul>
+               <li>Founded Enchey Monastery above Gangtok</li>
+               <li>Known for tantric mastery, siddhis, and mystical powers (levitation, flight)</li>
+               <li>Festivals: annual Cham mask dances</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Mystical tantric master; Enchey remains active center of practice</p>`
+    },
+    {
+      name: "Chogyal Gyurmed Namgyal",
+      img: "Chogyal Gyurmed Namgyal.webp",
+      info: `<p><span class="label">Born:</span> 1707</p>
+             <p><span class="label">Died:</span> 1733</p>
+             <p><span class="label">Role:</span> Fourth Chogyal of Sikkim</p>
+             <p><span class="label">Contributions:</span></p>
+             <ul>
+               <li>Founded Phodong Monastery (1721), center for Karma Kagyu</li>
+               <li>Maintained sovereignty against Nepalese and Bhutanese threats</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Strengthened Buddhist state and monastic network; preserved Namgyal dynasty rule</p>`
+    },
+    {
+      name: "Third Lhatsun Jigmed Pawo",
+      img: "Third Lhatsun Jigmed Pawo.webp",
+      info: `<p><span class="label">Born:</span> 1682</p>
+             <p><span class="label">Tradition:</span> Nyingma</p>
+             <p><span class="label">Key Contributions:</span></p>
+             <ul>
+               <li>Founded Phensang Monastery (1721) near Gangtok</li>
+               <li>Transmitted terma: Attainment of the Vidyadhara Life and Riwo Sangchö rituals</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Expanded Nyingma teachings; preserved tantric and monastic lineages</p>`
+    },
+    {
+      name: "12th Karmapa Changchub Dorje",
+      img: "The 12th Karmapa Changchub Dorje.webp",
+      info: `<p><span class="label">Born:</span> 1703, Kyile Tsagto, Derge, Eastern Tibet</p>
+             <p><span class="label">Died:</span> 1732</p>
+             <p><span class="label">Tradition:</span> Karma Kagyu</p>
+             <p><span class="label">Key Contributions:</span></p>
+             <ul>
+               <li>Recognized at 2 months; enthroned at Tsurphu Monastery</li>
+               <li>Pilgrimages across Himalayas; integrated Nyingma teachings</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Reinforced Karma Kagyu tradition; promoted inter-sectarian harmony</p>`
+    },
+    {
+      name: "Dungzin Rimpoche",
+      img: "Dungzin Rimpoche.webp",
+      info: `<p><span class="label">Tradition:</span> Vajrayana Buddhism, Nyingma influence</p>
+             <p><span class="label">Key Contributions:</span></p>
+             <ul>
+               <li>Crafted Sangdogpalri sculpture at Pemayangtse Monastery</li>
+               <li>Preserved sacred art, tantric rituals, and iconography</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Master artist and spiritual teacher; art serves as meditative and ritual instrument</p>`
+    },
+    {
+      name: "Khenchen Rolpai Dorje",
+      img: "Khenchen Rolpai Dorje.webp",
+      info: `<p><span class="label">Association:</span> Pemayangtse Monastery, Sikkim</p>
+             <p><span class="label">Role:</span> Scholarly lama, monastic leader</p>
+             <p><span class="label">Key Contributions:</span></p>
+             <ul>
+               <li>Consolidated monastic education and ritual practice</li>
+               <li>Preserved and transmitted Nyingma teachings</li>
+             </ul>
+             <p><span class="label">Legacy:</span> Esteemed teacher; strengthened monastic scholarship and ritual continuity</p>`
+    }
+  ];
+
+  const container = document.getElementById("cardContainer");
+
+  lamas.forEach((lama, index) => {
+    const card = document.createElement("div");
+    card.className = "lama-card";
+    card.innerHTML = `<img src="${lama.img}" alt="${lama.name}">
+                      <h3>${lama.name}</h3>`;
+    card.addEventListener("click", () => openModal(index));
+    container.appendChild(card);
+  });
+
+  function openModal(index) {
+    const modal = document.getElementById('lamaModal');
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `<h2>${lamas[index].name}</h2>` + lamas[index].info;
+    modal.style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById('lamaModal').style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('lamaModal');
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html>
