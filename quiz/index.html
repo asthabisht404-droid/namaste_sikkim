@@ -1,50 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sikkim Monastery Explorer 🏯</title>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-  <div class="container">
-    <h1 class="title-glow">SIKKIM MONASTERY EXPLORER 🏯</h1>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uttarakhand Tourist Quiz 🌄</title>
 
-    <!-- Monastery Selection Box -->
-    <div id="monastery-select">
-      <div id="monastery-list" class="ripple-button-list">
-        <button class="ripple-btn" data-bg="sample/images/rumtek.png">Rumtek Monastery</button>
-        <button class="ripple-btn" data-bg="sample/images/pemayangtse.png">Pemayangtse Monastery</button>
-        <button class="ripple-btn" data-bg="sample/images/enchey.png">Enchey Monastery</button>
-        <button class="ripple-btn" data-bg="sample/images/dubdi.png">Dubdi Monastery</button>
-        <button class="ripple-btn" data-bg="sample/images/tashiding.png">Tashiding Monastery</button>
-        <button class="ripple-btn" data-bg="sample/images/phodong.png">Phodong Monastery</button>
-        <button class="ripple-btn" data-bg="sample/images/Ralang.png">Ralang Monastery</button>
-        <button class="ripple-btn" data-bg="sample/images/lingdum.png">Lingdum Monastery</button>
-        <button class="ripple-btn" data-bg="sample/images/kartok.png">Kartok Monastery</button>
-        <button class="ripple-btn" data-bg="sample/images/Rinchen choling.png">Rinchenpong Monastery</button>
-      </div>
+<style>
+/* 🌿 UTTARAKHAND GREEN THEME */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(rgba(0,50,0,0.5), rgba(0,0,0,0.7)),
+              url("https://i.pinimg.com/736x/90/e6/0e/90e60e37c13f5e82044311be500c6bf1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+}
+
+/* 🌄 CONTAINER */
+.container {
+  width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(0, 60, 20, 0.6);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+}
+
+/* 🌿 TITLE */
+h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #b6ffb0;
+}
+
+/* 🌱 BUTTON LIST */
+.ripple-btn {
+  width: 300px;
+  padding: 12px;
+  margin: 10px auto;
+  display: block;
+  border: none;
+  border-radius: 10px;
+  background: #2e8b57;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.ripple-btn:hover {
+  background: #3cb371;
+}
+
+/* 🌿 QUIZ BOX */
+.quiz-box {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0, 80, 30, 0.7);
+  border-radius: 15px;
+}
+
+/* 🌱 OPTIONS */
+#options li {
+  list-style: none;
+  background: #e8ffe8;
+  color: #003300;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#options li:hover {
+  background: #b6ffb0;
+}
+
+/* 🌿 BUTTONS */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #228b22;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #32cd32;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🌄 Explore Uttarakhand Quiz</h1>
+
+  <!-- PLACE SELECTION -->
+  <div id="place-select">
+    <button class="ripple-btn">Kedarnath Temple</button>
+    <button class="ripple-btn">Badrinath Temple</button>
+    <button class="ripple-btn">Nainital Lake</button>
+    <button class="ripple-btn">Auli</button>
+    <button class="ripple-btn">Rishikesh</button>
+    <button class="ripple-btn">Valley of Flowers</button>
+    <button class="ripple-btn">Mussoorie</button>
+    <button class="ripple-btn">Jim Corbett National Park</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz-box" class="quiz-box" style="display:none;">
+    <div class="status">
+      <span id="progress"></span>
+      <span id="coins">Coins: 0</span>
     </div>
 
-    <!-- Quiz Box -->
-    <div id="quiz-box" class="quiz-box" style="display:none;">
-      <div class="status">
-        <span id="progress"></span>
-        <span id="coins">💰 Coins: 0</span>
-      </div>
-      <div class="question-box">
-        <div class="question-area">
-          <h2 id="question">Loading question...</h2>
-          <ul id="options"></ul>
-        </div>
-        <div id="feedback"></div>
-      </div>
-      <div class="actions">
-        <button id="backBtn" type="button">🔙 Back</button>
-        <button id="nextBtn" type="button">Next ➡️</button>
-      </div>
+    <h2 id="question"></h2>
+    <ul id="options"></ul>
+    <div id="feedback"></div>
+
+    <div class="actions">
+      <button onclick="goBack()">Back</button>
+      <button onclick="nextQuestion()">Next</button>
     </div>
   </div>
-  <script src="script.js"></script>
+</div>
+
+<script>
+const quizData = {
+
+"Kedarnath Temple": [
+{question:"Kedarnath is dedicated to which god?",options:["Vishnu","Shiva","Brahma","Indra"],answer:"Shiva"},
+{question:"Kedarnath is part of which pilgrimage?",options:["Char Dham","Golden Triangle","Pancha Bhoota","Jyotirlinga only"],answer:"Char Dham"},
+{question:"River near Kedarnath?",options:["Ganga","Mandakini","Yamuna","Alaknanda"],answer:"Mandakini"},
+{question:"Best time to visit?",options:["Winter","Monsoon","Summer","Autumn"],answer:"Summer"}
+],
+
+"Badrinath Temple": [
+{question:"Badrinath is dedicated to?",options:["Shiva","Vishnu","Krishna","Hanuman"],answer:"Vishnu"},
+{question:"Located in which district?",options:["Chamoli","Dehradun","Nainital","Pauri"],answer:"Chamoli"},
+{question:"Nearby river?",options:["Yamuna","Ganga","Alaknanda","Saraswati"],answer:"Alaknanda"}
+],
+
+"Nainital Lake": [
+{question:"Nainital is famous for?",options:["Lake","Temple","Forest","Desert"],answer:"Lake"},
+{question:"Shape of lake?",options:["Circle","Oval","Eye-shaped","Square"],answer:"Eye-shaped"},
+{question:"State animal nearby?",options:["Tiger","Leopard","Deer","Elephant"],answer:"Leopard"}
+],
+
+"Auli": [
+{question:"Auli is famous for?",options:["Desert","Skiing","Temple","River"],answer:"Skiing"},
+{question:"Located in which district?",options:["Chamoli","Tehri","Pauri","Haridwar"],answer:"Chamoli"},
+{question:"View of which peak?",options:["Everest","Nanda Devi","K2","Kanchenjunga"],answer:"Nanda Devi"}
+],
+
+"Rishikesh": [
+{question:"Rishikesh is known as?",options:["Yoga Capital","Temple City","Hill Queen","Lake City"],answer:"Yoga Capital"},
+{question:"River flowing?",options:["Yamuna","Ganga","Teesta","Brahmaputra"],answer:"Ganga"},
+{question:"Adventure sport?",options:["Skiing","Rafting","Surfing","Paragliding"],answer:"Rafting"}
+],
+
+"Valley of Flowers": [
+{question:"Located in?",options:["Chamoli","Pithoragarh","Tehri","Nainital"],answer:"Chamoli"},
+{question:"Type of site?",options:["Desert","National Park","Temple","Lake"],answer:"National Park"},
+{question:"UNESCO site?",options:["Yes","No"],answer:"Yes"}
+],
+
+"Mussoorie": [
+{question:"Mussoorie is called?",options:["Queen of Hills","Lake City","Yoga City","Temple Town"],answer:"Queen of Hills"},
+{question:"Near which city?",options:["Dehradun","Delhi","Haridwar","Rishikesh"],answer:"Dehradun"},
+{question:"Famous waterfall?",options:["Kempty Falls","Jog Falls","Dudhsagar","Athirappilly"],answer:"Kempty Falls"}
+],
+
+"Jim Corbett National Park": [
+{question:"Famous for?",options:["Lions","Tigers","Elephants","Bears"],answer:"Tigers"},
+{question:"Established in?",options:["1936","1950","1965","1972"],answer:"1936"},
+{question:"River flowing?",options:["Ganga","Ramganga","Yamuna","Kosi"],answer:"Ramganga"}
+]
+
+};
+
+let current=0,coins=0,selectedPlace="",answered=false;
+
+document.querySelectorAll(".ripple-btn").forEach(btn=>{
+btn.onclick=()=>{
+selectedPlace=btn.innerText;
+document.getElementById("place-select").style.display="none";
+document.getElementById("quiz-box").style.display="block";
+current=0;coins=0;
+loadQuestion();
+};
+});
+
+function loadQuestion(){
+let q=quizData[selectedPlace][current];
+document.getElementById("question").innerText=q.question;
+document.getElementById("progress").innerText=`Q ${current+1}/${quizData[selectedPlace].length}`;
+document.getElementById("coins").innerText=`Coins: ${coins}`;
+
+let options=document.getElementById("options");
+options.innerHTML="";
+q.options.forEach(opt=>{
+let li=document.createElement("li");
+li.innerText=opt;
+li.onclick=()=>checkAnswer(li,q.answer);
+options.appendChild(li);
+});
+answered=false;
+}
+
+function checkAnswer(el,correct){
+if(answered) return;
+if(el.innerText===correct){
+coins+=10;
+el.style.background="green";
+document.getElementById("feedback").innerText="Correct!";
+}else{
+el.style.background="red";
+document.getElementById("feedback").innerText="Wrong! "+correct;
+}
+answered=true;
+}
+
+function nextQuestion(){
+if(current<quizData[selectedPlace].length-1){
+current++;
+loadQuestion();
+}else{
+document.getElementById("quiz-box").innerHTML=`<h2>🎉 Completed!</h2><p>Coins: ${coins}</p><button onclick="location.reload()">Play Again</button>`;
+}
+}
+
+function goBack(){
+location.reload();
+}
+</script>
+
 </body>
 </html>

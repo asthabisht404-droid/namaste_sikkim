@@ -1,30 +1,22 @@
 const monasteries = [
-  { name: "Rumtek Monastery", coords: [27.333, 88.620], location: "East Sikkim", established: "1740", rating: 4.8, sect: "Kagyü Sect", tourUrl: "#" },
-  { name: "Pemayangtse Monastery", coords: [27.250, 88.250], location: "West Sikkim", established: "1705", rating: 4.7, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Tashiding Monastery", coords: [27.200, 88.300], location: "West Sikkim", established: "1717", rating: 4.6, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Enchey Monastery", coords: [27.330, 88.616], location: "Gangtok, East Sikkim", established: "1909", rating: 4.5, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Phodong Monastery", coords: [27.425, 88.530], location: "North Sikkim", established: "1718", rating: 4.6, sect: "Kagyü Sect", tourUrl: "#" },
-  { name: "Ralong Monastery", coords: [27.140, 88.170], location: "South Sikkim", established: "1690", rating: 4.4, sect: "Kagyü Sect", tourUrl: "#" },
-  { name: "Sanga Choeling Monastery", coords: [27.316, 88.266], location: "West Sikkim", established: "1697", rating: 4.7, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Tsomgo Monastery", coords: [27.330, 88.550], location: "East Sikkim", established: "1900", rating: 4.3, sect: "Buddhist", tourUrl: "#" },
-  { name: "Phensang Monastery", coords: [27.413, 88.566], location: "North Sikkim", established: "1721", rating: 4.5, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Lachung Monastery", coords: [27.690, 88.741], location: "North Sikkim", established: "1880", rating: 4.4, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Lingdum (Ranka) Monastery", coords: [27.354, 88.695], location: "East Sikkim", established: "1998", rating: 4.7, sect: "Zurman Kagyu Sect", tourUrl: "#" },
-  { name: "Dubdi Monastery", coords: [27.333, 88.233], location: "West Sikkim (Yuksom)", established: "1701", rating: 4.6, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Kartok Monastery", coords: [27.301, 88.236], location: "Yuksom, West Sikkim", established: "18th Century", rating: 4.3, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Zong Dog Palri Fo Brang Monastery", coords: [27.043, 88.266], location: "Kalimpong (Near Sikkim)", established: "1976", rating: 4.5, sect: "Buddhist", tourUrl: "#" },
-  { name: "Ngadak Monastery", coords: [27.296, 88.273], location: "Namchi, South Sikkim", established: "17th Century", rating: 4.2, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Tholung Monastery", coords: [27.707, 88.545], location: "Dzongu, North Sikkim", established: "1789", rating: 4.4, sect: "Nyingma Sect", tourUrl: "#" },
-
-  // Newly added monasteries
-  { name: "Lingdum Monastery", coords: [27.354, 88.695], location: "Near Ranka, East Sikkim", established: "1998", rating: 4.7, sect: "Zurman Kagyu Sect", tourUrl: "#" },
-  { name: "Tashilhunpo Monastery", coords: [27.170, 88.880], location: "Shigatse, Tibet", established: "1447", rating: 4.8, sect: "Gelugpa Sect", tourUrl: "#" },
-  { name: "Lachung Monastery", coords: [27.690, 88.741], location: "North Sikkim", established: "1880", rating: 4.4, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Phensang Monastery", coords: [27.413, 88.566], location: "North Sikkim", established: "1721", rating: 4.5, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Sanga Choeling Monastery", coords: [27.316, 88.266], location: "West Sikkim", established: "1697", rating: 4.7, sect: "Nyingma Sect", tourUrl: "#" },
-  { name: "Ralong Monastery", coords: [27.140, 88.170], location: "South Sikkim", established: "1690", rating: 4.4, sect: "Kagyü Sect", tourUrl: "#" },
-  { name: "Lingdum Ranka Monastery", coords: [27.354, 88.695], location: "East Sikkim", established: "1998", rating: 4.7, sect: "Zurman Kagyu Sect", tourUrl: "#" },
-  { name: "Ngadak Monastery", coords: [27.296, 88.273], location: "Namchi, South Sikkim", established: "17th Century", rating: 4.2, sect: "Nyingma Sect", tourUrl: "#" }
+  { name: "Kedarnath Temple", coords: [30.7352, 79.0669], location: "Rudraprayag, Uttarakhand", established: "Ancient", rating: 4.9, sect: "Jyotirlinga - Lord Shiva", tourUrl: "#" },
+  { name: "Badrinath Temple", coords: [30.7433, 79.4938], location: "Chamoli, Uttarakhand", established: "Ancient", rating: 4.9, sect: "Lord Vishnu", tourUrl: "#" },
+  { name: "Gangotri Temple", coords: [30.9947, 78.9398], location: "Uttarkashi, Uttarakhand", established: "18th Century", rating: 4.8, sect: "Goddess Ganga", tourUrl: "#" },
+  { name: "Yamunotri Temple", coords: [31.0140, 78.4600], location: "Uttarkashi, Uttarakhand", established: "Ancient", rating: 4.8, sect: "Goddess Yamuna", tourUrl: "#" },
+  { name: "Tungnath Temple", coords: [30.4894, 79.2148], location: "Rudraprayag, Uttarakhand", established: "Highest Shiva Temple", rating: 4.9, sect: "Panch Kedar", tourUrl: "#" },
+  { name: "Neelkanth Mahadev", coords: [30.1357, 78.3222], location: "Rishikesh, Uttarakhand", established: "Ancient", rating: 4.8, sect: "Lord Shiva", tourUrl: "#" },
+  { name: "Jageshwar Dham", coords: [29.6395, 79.8508], location: "Almora, Uttarakhand", established: "Ancient", rating: 4.7, sect: "Temple Complex", tourUrl: "#" },
+  { name: "Mansa Devi Temple", coords: [29.9475, 78.1642], location: "Haridwar, Uttarakhand", established: "Ancient", rating: 4.7, sect: "Shakti Peeth", tourUrl: "#" },
+  { name: "Chandi Devi Temple", coords: [29.9525, 78.1770], location: "Haridwar, Uttarakhand", established: "Ancient", rating: 4.7, sect: "Shakti Peeth", tourUrl: "#" },
+  { name: "Naina Devi Temple", coords: [29.3803, 79.4636], location: "Nainital, Uttarakhand", established: "Ancient", rating: 4.8, sect: "Shakti Peeth", tourUrl: "#" },
+  { name: "Har Ki Pauri", coords: [29.9457, 78.1642], location: "Haridwar, Uttarakhand", established: "Sacred Ghat", rating: 4.9, sect: "Ganga Aarti", tourUrl: "#" },
+  { name: "Laxman Jhula", coords: [30.1290, 78.3295], location: "Rishikesh, Uttarakhand", established: "Historic Bridge", rating: 4.8, sect: "Spiritual Site", tourUrl: "#" },
+  { name: "Rudranath Temple", coords: [30.5850, 79.3000], location: "Chamoli, Uttarakhand", established: "Ancient", rating: 4.8, sect: "Panch Kedar", tourUrl: "#" },
+  { name: "Kalpeshwar Temple", coords: [30.5620, 79.3550], location: "Chamoli, Uttarakhand", established: "Ancient", rating: 4.7, sect: "Panch Kedar", tourUrl: "#" },
+  { name: "Auli", coords: [30.5285, 79.5650], location: "Chamoli, Uttarakhand", established: "Ski Destination", rating: 4.8, sect: "Tourism", tourUrl: "#" },
+  { name: "Valley of Flowers", coords: [30.7268, 79.6050], location: "Chamoli, Uttarakhand", established: "National Park", rating: 4.9, sect: "UNESCO Site", tourUrl: "#" },
+  { name: "Hemkund Sahib", coords: [30.7260, 79.6060], location: "Chamoli, Uttarakhand", established: "Sikh Pilgrimage", rating: 4.9, sect: "Gurudwara", tourUrl: "#" },
+  { name: "Mussoorie", coords: [30.4598, 78.0644], location: "Dehradun, Uttarakhand", established: "Hill Station", rating: 4.7, sect: "Tourism", tourUrl: "#" }
 ];
 
 // Initialize map
